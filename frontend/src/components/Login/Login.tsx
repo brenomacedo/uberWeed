@@ -1,6 +1,7 @@
 import React from 'react'
 import './Login.css'
 import LoginForm from '../LoginForm/LoginForm'
+import RegisterForm from '../RegisterForm/RegisterForm'
 import Banner from '../../assets/imgs/banner.png'
 
 const Login: React.FC = () => {

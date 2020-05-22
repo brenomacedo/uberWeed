@@ -12,6 +12,7 @@ const LoginForm: React.FC = () => {
             </div>
             <textarea placeholder="Detalhes do fornecedor"></textarea>
             <button type="submit" className="button-submit">Cadastrar</button>
+            <p>Já possui uma conta? <strong>Entrar</strong></p>
         </form>
     )
 }

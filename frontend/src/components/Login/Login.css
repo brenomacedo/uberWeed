@@ -67,3 +67,16 @@
 .image-banner {
     width: 100%;
 }
+
+.form-login p {
+    font-family: sans-serif;
+    font-size: 18px;
+    color: darkolivegreen;
+    padding: 5px;
+}
+
+@media screen and (max-width: 800px) {
+    .banner {
+        display: none;
+    }
+}
