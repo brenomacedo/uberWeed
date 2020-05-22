@@ -3,7 +3,7 @@
     background-color: #96d980;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .form-login {
@@ -37,4 +37,33 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.form-login textarea {
+    width: 100%;
+    padding: 5px;
+    resize: none;
+    height: 120px;
+    font-size: 15px;
+    font-family: sans-serif;
+    margin-bottom: 10px;
+}
+
+.button-submit {
+    background-color: #96d980;
+    border: 0;
+    padding: 10px;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    font-family: sans-serif;
+    outline: none;
+}
+
+.banner {
+    width: 50%;
+}
+
+.image-banner {
+    width: 100%;
 }
