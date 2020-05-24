@@ -1,5 +1,6 @@
 .login-wrapper {
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background-color: #96d980;
     display: flex;
     align-items: center;

@@ -1,4 +1,66 @@
 .profile-wrapper {
     background-color: #96d980;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
+}
+
+.top-bar {
+    padding: 5px;
+    background-color: white;
+    -webkit-box-shadow: -7px 9px 22px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -7px 9px 22px 0px rgba(0,0,0,0.75);
+    box-shadow: -7px 9px 22px 0px rgba(0,0,0,0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-bar h3 {
+    font-family: sans-serif;
+    font-size: 25px;
+    padding: 10px;
+}
+
+.top-bar .weed {
+    background-image: url('../../assets/imgs/cannabis.png');
+    height: 40px;
+    width: 40px;
+    background-size: contain;
+}
+
+.widgets-grid {
+    min-height: 650px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 2fr 3fr;
+    padding: 20px;
+}
+.map {
+    grid-row: span 2;
+    grid-column: span 1;
+    background-color: white;
+    margin: 20px;
+    -webkit-box-shadow: 11px 10px 12px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 11px 10px 12px -6px rgba(0,0,0,0.75);
+    box-shadow: 11px 10px 12px -6px rgba(0,0,0,0.75);
+}
+
+.askings {
+    grid-row: span 1;
+    grid-column: span 1;
+    background-color: white;
+    margin: 20px;
+    -webkit-box-shadow: 11px 10px 12px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 11px 10px 12px -6px rgba(0,0,0,0.75);
+    box-shadow: 11px 10px 12px -6px rgba(0,0,0,0.75);
+}
+
+.pendingAskings {
+    grid-row: span 1;
+    grid-column: span 1;
+    background-color: white;
+    margin: 20px;
+    -webkit-box-shadow: 11px 10px 12px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 11px 10px 12px -6px rgba(0,0,0,0.75);
+    box-shadow: 11px 10px 12px -6px rgba(0,0,0,0.75);
 }
