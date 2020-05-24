@@ -1,11 +1,19 @@
 import React from 'react'
 import Login from './components/Login/Login'
+import Profile from './components/Profile/Profile'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import './Global.css'
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/profile" component={Profile} />
+          <Redirect from="*" to="/" />
+        </Switch>
+      </BrowserRouter>
     </div>
   )
 }
