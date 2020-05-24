@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Profile.css'
-import { GoogleApiWrapper, Map, GoogleAPI } from 'google-maps-react'
+import { GoogleApiWrapper, Map } from 'google-maps-react'
+import { IMapProps, IProfileState } from '../../interfaces'
 
-interface IMapProps{
-    google: GoogleAPI
-}
 
 const Profile: React.FC<IMapProps> = props => {
+
+    const [mapPosition, setMapPosition] = useState<IProfileState>({ lat: 0, lng: 0 })
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition((position) => {
+            setMapPosition({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            })
+        })
+
+    }, [])
+
     return (
         <div className="profile-wrapper">
             <div className="top-bar">
@@ -19,7 +30,8 @@ const Profile: React.FC<IMapProps> = props => {
                     <Map containerStyle={{
                         position: 'relative',  
                         width: '100%',
-                        height: '100%' }}  google={props.google} />
+                        height: '100%' }} center={mapPosition} initialCenter={{ lat: 0, lng: 0 }}
+                        google={props.google} />
                 </div>
                 <div className="askings">
 
