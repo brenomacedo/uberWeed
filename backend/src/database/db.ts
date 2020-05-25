@@ -1,8 +1,7 @@
-import { Sequelize } from 'sequelize'
+import { Sequelize, DataTypes } from 'sequelize'
 import dotenv from 'dotenv'
+const config = require('../config/index')
 
-dotenv.config()
+const sequelize = new Sequelize(config)
 
-const database = new Sequelize()
-
-export default database
+export default sequelize

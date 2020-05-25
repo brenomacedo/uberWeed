@@ -1,4 +1,5 @@
 import express from 'express'
+import './database/db'
 const app = express()
 
 app.use(express.json())
