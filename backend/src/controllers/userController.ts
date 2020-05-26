@@ -29,7 +29,7 @@ export default {
     async select(req: Request, res: Response) {
         const user = await User.findAll({
             where: {
-                name: req.body.name
+                name: String(req.query.name)
             }
         })
 
