@@ -1,4 +1,5 @@
-import { DataTypes, Model } from 'sequelize'
+import { DataTypes, Model, Sequelize } from 'sequelize'
+import User from './User'
 import sequelize from '../database/db'
 
 class Asking extends Model {
@@ -17,8 +18,8 @@ class Asking extends Model {
 }
 
 Asking.init({
-    lat: DataTypes.NUMBER,
-    lng: DataTypes.NUMBER,
+    lat: DataTypes.FLOAT,
+    lng: DataTypes.FLOAT,
     userId: DataTypes.NUMBER,
     description: DataTypes.STRING,
     pending: DataTypes.BOOLEAN,

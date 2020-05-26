@@ -1,4 +1,5 @@
 import Sequelize, { Model, DataTypes, ConnectionOptions, ModelType } from 'sequelize'
+import Asking from './Asking'
 import sequelize from '../database/db'
 
 
@@ -24,5 +25,8 @@ User.init({
     sequelize,
     tableName: 'User'
 })
+
+User.hasMany(Asking, { foreignKey: 'userId', as: 'asking' })
+Asking.belongsTo(User, { foreignKey: 'userId', as: 'user' })
 
 export default User

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import User from '../models/User'
 import bcryptjs from 'bcryptjs'
+import { Op } from 'sequelize'
 
 export default {
     async create(req: Request, res: Response) {
@@ -29,8 +30,9 @@ export default {
     async select(req: Request, res: Response) {
         const user = await User.findAll({
             where: {
-                name: String(req.query.name)
-            }
+                name: { [Op.like]: `%${req.query.name}%` }
+            },
+            include: ['asking']
         })
 
         return res.json(user)
