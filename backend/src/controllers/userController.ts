@@ -1,12 +1,12 @@
 import { Request, Response } from 'express'
 import User from '../models/User'
-
-interface Users{
-    name: string
-}
+import bcryptjs from 'bcryptjs'
 
 export default {
     async create(req: Request, res: Response) {
+
+        const password = await bcryptjs.hash(String(req.body.password), 10)
+
         const user = await User.findOrCreate({
             where: {
                 username: req.body.username
@@ -14,7 +14,7 @@ export default {
             defaults: {
                 name: req.body.name,
                 username: req.body.username,
-                password: req.body.password,
+                password,
                 description: req.body.description
             }
         })

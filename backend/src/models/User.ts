@@ -1,5 +1,6 @@
-import Sequelize, { Model, DataTypes, ConnectionOptions } from 'sequelize'
+import Sequelize, { Model, DataTypes, ConnectionOptions, ModelType } from 'sequelize'
 import sequelize from '../database/db'
+
 
 class User extends Model {
 
