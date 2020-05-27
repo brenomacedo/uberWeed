@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Profile.css'
 import { GoogleApiWrapper, Map } from 'google-maps-react'
 import { IMapProps, IProfileState } from '../../interfaces'
+import Asking from '../Asking/Asking'
 
 
 const Profile: React.FC<IMapProps> = props => {
@@ -34,7 +35,12 @@ const Profile: React.FC<IMapProps> = props => {
                         google={props.google} />
                 </div>
                 <div className="askings">
-
+                    <Asking />
+                    <Asking />
+                    <Asking />
+                    <Asking />
+                    <Asking />
+                    <Asking />
                 </div>
                 <div className="pendingAskings">
 

@@ -76,6 +76,10 @@
     padding: 5px;
 }
 
+strong {
+    cursor: pointer;
+}
+
 @media (max-width: 800px) {
     .banner {
         display: none;
