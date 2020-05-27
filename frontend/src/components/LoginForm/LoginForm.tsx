@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { IAuth } from '../../interfaces'
 import axios from 'axios'
 import '../Login/Login.css'
 import { useHistory } from 'react-router-dom'
@@ -17,16 +18,20 @@ const LoginForm: React.FC = () => {
 
     const handleLogin = async () => {
         try {
-            await axios.post('/authenticate', {
+            const user = await axios.post<IAuth>('/authenticate', {
                 username: email,
                 password: password
             })
 
-            history.push('/profile')
+            localStorage.setItem('loginToken', user.data.token)
+            axios.defaults.headers.common.authorization = `Bearer ${user.data.token}`
+            
+            history.push('/profile', user.data.user)
         } catch {
             setErrors(['User or password incorrects!'])
         }
     }
+
 
     return (
         <form className="form-login">

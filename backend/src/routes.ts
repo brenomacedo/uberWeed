@@ -7,6 +7,7 @@ const routes = Router()
 
 //AUTH
 routes.post('/authenticate', authController.authenticate)
+routes.post('/tokenprovided',authMiddleware ,authController.tokenProvided)
 
 //USER
 routes.post('/user/create', userController.create)

@@ -10,7 +10,8 @@ export default {
             where: {
                 username: req.body.username
             },
-            attributes: ['id','name','username','description','password']
+            attributes: ['id','name','username','description','password'],
+            include: ['asking']
         })
 
         if(!user) {
@@ -27,5 +28,18 @@ export default {
         
 
         return res.json({ user, token })
+    },
+
+    async tokenProvided(req: Request, res: Response) {
+        const user = await User.findByPk(req.body.userId.id, {
+            attributes: ['id', 'name', 'username', 'description'],
+            include: ['asking']
+        })
+
+        if(!user) {
+            return res.status(404).send('USER NOT FOUND')
+        }
+
+        return res.json(user)
     }
 }

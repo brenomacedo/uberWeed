@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { useLocation, useHistory } from 'react-router-dom'
 import './Profile.css'
 import { GoogleApiWrapper, Map } from 'google-maps-react'
-import { IMapProps, IProfileState } from '../../interfaces'
+import { IMapProps, IProfileState, IUser } from '../../interfaces'
 import Asking from '../Asking/Asking'
 import PendingAsking from '../PendingAskings/PendingAskings'
 
 
 const Profile: React.FC<IMapProps> = props => {
 
+    const history = useHistory()
+
     const [mapPosition, setMapPosition] = useState<IProfileState>({ lat: 0, lng: 0 })
+    const [user, setUser] = useState<IUser>({
+        id: 0,
+        name: '',
+        username: '',
+        description: '',
+        asking: []
+    })
+    
+    const location = useLocation<IUser>()
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -18,13 +31,36 @@ const Profile: React.FC<IMapProps> = props => {
             })
         })
 
+        userInfo()
+
     }, [])
+
+    const userInfo = async () => {
+        if(location.state) {
+            setUser({...location.state})
+            return
+        }
+
+        if(localStorage.getItem('loginToken')) {
+            try {
+                axios.defaults.headers.common.authorization = `Bearer ${localStorage.getItem('loginToken')}`
+                const userByToken = await axios.post<IUser>('/tokenprovided')
+                setUser({...userByToken.data})
+            } catch (error) {
+                history.push('/')
+            }
+
+            return
+        }
+
+        history.push('/')
+    }
 
     return (
         <div className="profile-wrapper">
             <div className="top-bar">
                 <div className="weed"></div>
-                <h3>Profile Name</h3>
+                <h3>{user.name}</h3>
                 <div className="weed"></div>
             </div>
             <div className="widgets-grid">

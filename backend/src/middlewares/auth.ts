@@ -21,7 +21,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
             res.status(401).send('INVALID TOKEN')
         }
         
-        req.query.userId = String(decoded)
+        req.body.userId = decoded
         return next()
     })
 }
