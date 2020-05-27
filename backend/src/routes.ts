@@ -6,7 +6,7 @@ import authMiddleware from './middlewares/auth'
 const routes = Router()
 
 //AUTH
-routes.get('/authenticate', authController.authenticate)
+routes.post('/authenticate', authController.authenticate)
 
 //USER
 routes.post('/user/create', userController.create)

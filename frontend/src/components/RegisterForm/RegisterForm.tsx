@@ -18,7 +18,7 @@ const RegisterForm: React.FC = () => {
         history.push('/')
     }
 
-    const handleLogin = async () => {
+    const handleRegister = async () => {
 
         let validations: string[] = []
 
@@ -72,7 +72,7 @@ const RegisterForm: React.FC = () => {
             <div className="validations">
                 {errors.map((error, index) => <h4 className="validation" key={index} >- {error}</h4>)}
             </div>
-            <button type="button" onClick={handleLogin} className="button-submit">Cadastrar</button>
+            <button type="button" onClick={handleRegister} className="button-submit">Cadastrar</button>
             <p>Já possui uma conta? <strong onClick={toLoginScreen}>Entrar</strong></p>
         </form>
     )

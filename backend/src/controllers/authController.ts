@@ -8,19 +8,21 @@ export default {
     async authenticate(req: Request, res: Response) {
         const user = await User.findOne({
             where: {
-                username: String(req.query.username)
+                username: req.body.username
             },
-            attributes: ['id','name','username','description']
+            attributes: ['id','name','username','description','password']
         })
 
         if(!user) {
             return res.status(404).send('User or password are incorrects!')
         }
 
-        if(!bcryptjs.compare(String(req.query.password), user.password)) {
+
+        if(!await bcryptjs.compare(req.body.password, user.password)) {
             return res.status(404).send('User or password are incorrects!')
         }
 
+        user.password = undefined
         const token = jwt.sign({ id: user.id }, key, { expiresIn: 86400 })
         
 
