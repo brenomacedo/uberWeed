@@ -8,3 +8,9 @@ export interface IProfileState {
     lat: number
     lng: number
 }
+
+export interface IRegisterPosition {
+    lat: number
+    lng: number
+    position: boolean
+}
