@@ -1,0 +1,45 @@
+.pending-askings-wrapper {
+    margin: 4px;
+    padding: 5px;
+    background-color: #e3e3e3;
+}
+
+.pending-askings-wrapper div {
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: green;
+}
+
+.pending-askings-wrapper h3 {
+    font-family: sans-serif;
+    font-size: 15px;
+    margin: 3px 0;
+}
+
+.pending-askings-wrapper button.deny {
+    padding: 5px;
+    font-family: sans-serif;
+    background-color: tomato;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    outline: none;
+    border: 0;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.pending-askings-wrapper button.accept {
+    padding: 5px;
+    font-family: sans-serif;
+    background-color: yellowgreen;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    outline: none;
+    border: 0;
+    border-radius: 2px;
+    cursor: pointer;
+}

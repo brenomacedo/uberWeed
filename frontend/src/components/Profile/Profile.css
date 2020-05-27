@@ -65,4 +65,5 @@
     -webkit-box-shadow: 11px 10px 12px -6px rgba(0,0,0,0.75);
     -moz-box-shadow: 11px 10px 12px -6px rgba(0,0,0,0.75);
     box-shadow: 11px 10px 12px -6px rgba(0,0,0,0.75);
+    overflow: auto;
 }
