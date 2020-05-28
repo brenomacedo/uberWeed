@@ -63,6 +63,16 @@ const Profile: React.FC<IMapProps> = props => {
         history.push('/')
     }
 
+    const renderAskings = () => {
+        const acceptedAskings = user.asking.filter(item => item.pending === false)
+        return acceptedAskings.map(item => <Asking {...item} />)
+    }
+
+    const renderPendingAskings = () => {
+        const pendingAskings = user.asking.filter(item => item.pending === true)
+        return pendingAskings.map(item => <Asking {...item} />)
+    }
+
     return (
         <div className="profile-wrapper">
             <div className="top-bar">
@@ -84,19 +94,10 @@ const Profile: React.FC<IMapProps> = props => {
                         google={props.google} />
                 </div>
                 <div className="askings">
-                    <Asking />
-                    <Asking />
-                    <Asking />
-                    <Asking />
-                    <Asking />
-                    <Asking />
+                    {renderAskings()}
                 </div>
                 <div className="pendingAskings">
-                    <PendingAsking />
-                    <PendingAsking />
-                    <PendingAsking />
-                    <PendingAsking />
-                    <PendingAsking />
+                    {renderPendingAskings()}
                 </div>
             </div>
         </div>

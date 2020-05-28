@@ -1,7 +1,8 @@
 import React from 'react'
+import { IAsking } from '../../interfaces'
 import './PendingAskings.css'
 
-const PendingAskings: React.FC = () =>  {
+const PendingAskings: React.FC<IAsking> = () =>  {
     return (
         <div className="pending-askings-wrapper">
             <div>Novo pedido!</div>
