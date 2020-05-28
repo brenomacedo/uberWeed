@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { IRegisterPosition } from '../../interfaces'
 import axios from 'axios'
 
 const RegisterForm: React.FC = () => {
@@ -11,7 +10,6 @@ const RegisterForm: React.FC = () => {
     const [confirmPassword, setConfirmPassword] = useState<string>('')
     const [details, setDetails] = useState<string>('')
     const [errors, setErrors] = useState<string[]>([])
-    const [position, setPosition] = useState<IRegisterPosition>({ lat: 0, lng: 0, position: false })
     const history = useHistory()
 
     const toLoginScreen = () => {

@@ -6,6 +6,7 @@ import './Profile.css'
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react'
 import { IMapProps, IProfileState, IUser } from '../../interfaces'
 import Asking from '../Asking/Asking'
+import MarkerIcon from '../../assets/imgs/cannabis2.png'
 import PendingAsking from '../PendingAskings/PendingAskings'
 
 
@@ -65,12 +66,12 @@ const Profile: React.FC<IMapProps> = props => {
 
     const renderAskings = () => {
         const acceptedAskings = user.asking.filter(item => item.pending === false)
-        return acceptedAskings.map(item => <Asking {...item} />)
+        return acceptedAskings.map((item, index) => <Asking key={index} {...item} />)
     }
 
     const renderPendingAskings = () => {
         const pendingAskings = user.asking.filter(item => item.pending === true)
-        return pendingAskings.map(item => <Asking {...item} />)
+        return pendingAskings.map((item, index) => <PendingAsking key={index} {...item} />)
     }
 
     return (
@@ -92,11 +93,11 @@ const Profile: React.FC<IMapProps> = props => {
                         width: '100%',
                         height: '100%' }} center={mapPosition} initialCenter={{ lat: 0, lng: 0 }}
                         google={props.google}>
-                            <Marker name='Você está aqui' position={mapPosition}
+                            <Marker position={mapPosition} 
                             icon={{
-                                url: 'https://image.flaticon.com/icons/svg/2928/2928889.svg',
-                                anchor: new google.maps.Point(32,32),
-                                scaledSize: new google.maps.Size(64,64)
+                                url: MarkerIcon,
+                                anchor: new google.maps.Point(16,16),
+                                scaledSize: new google.maps.Size(16,16)
                             }} />
                     </Map>
                 </div>

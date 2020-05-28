@@ -8,7 +8,7 @@ const Login: React.FC = () => {
         <div className="login-wrapper">
             <RegisterForm />
             <div className="banner">
-                <img title="smoke weed every day!" className="image-banner" src={Banner} />
+                <img alt="smoke weed every day!" className="image-banner" src={Banner} />
             </div>
         </div>
     )

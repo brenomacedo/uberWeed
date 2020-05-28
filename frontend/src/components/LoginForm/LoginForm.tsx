@@ -7,12 +7,12 @@ import { useHistory } from 'react-router-dom'
 const LoginForm: React.FC = () => {
 
     const history = useHistory()
-
+    
     useEffect(() => {
         if(localStorage.getItem('loginToken')) {
             history.push('/profile')
         }
-    }, [])
+    }, [history])
 
     const toRegisterScreen = () => {
         history.push('/register')

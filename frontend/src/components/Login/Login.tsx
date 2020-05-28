@@ -1,7 +1,6 @@
 import React from 'react'
 import './Login.css'
 import LoginForm from '../LoginForm/LoginForm'
-import RegisterForm from '../RegisterForm/RegisterForm'
 import Banner from '../../assets/imgs/banner.png'
 
 const Login: React.FC = () => {
@@ -9,7 +8,7 @@ const Login: React.FC = () => {
         <div className="login-wrapper">
             <LoginForm />
             <div className="banner">
-                <img title="smoke weed every day!" className="image-banner" src={Banner} />
+                <img alt="smoke weed every day!" className="image-banner" src={Banner} />
             </div>
         </div>
     )
