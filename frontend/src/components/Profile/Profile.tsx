@@ -3,7 +3,7 @@ import { FaDoorOpen } from 'react-icons/fa'
 import axios from 'axios'
 import { useLocation, useHistory } from 'react-router-dom'
 import './Profile.css'
-import { GoogleApiWrapper, Map } from 'google-maps-react'
+import { GoogleApiWrapper, Map, Marker } from 'google-maps-react'
 import { IMapProps, IProfileState, IUser } from '../../interfaces'
 import Asking from '../Asking/Asking'
 import PendingAsking from '../PendingAskings/PendingAskings'
@@ -91,7 +91,14 @@ const Profile: React.FC<IMapProps> = props => {
                         position: 'relative',  
                         width: '100%',
                         height: '100%' }} center={mapPosition} initialCenter={{ lat: 0, lng: 0 }}
-                        google={props.google} />
+                        google={props.google}>
+                            <Marker name='Você está aqui' position={mapPosition}
+                            icon={{
+                                url: 'https://image.flaticon.com/icons/svg/2928/2928889.svg',
+                                anchor: new google.maps.Point(32,32),
+                                scaledSize: new google.maps.Size(64,64)
+                            }} />
+                    </Map>
                 </div>
                 <div className="askings">
                     {renderAskings()}
