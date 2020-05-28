@@ -11,7 +11,7 @@
     -moz-box-shadow: -7px 9px 22px 0px rgba(0,0,0,0.75);
     box-shadow: -7px 9px 22px 0px rgba(0,0,0,0.75);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -21,11 +21,27 @@
     padding: 10px;
 }
 
+.top-bar h3.logout {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: green;
+    cursor: pointer;
+}
+
+.top-bar h3.logout strong {
+    padding: 0 5px;
+}
+
 .top-bar .weed {
     background-image: url('../../assets/imgs/cannabis.png');
     height: 40px;
     width: 40px;
     background-size: contain;
+}
+
+.profile-info {
+    display: flex;
 }
 
 .widgets-grid {

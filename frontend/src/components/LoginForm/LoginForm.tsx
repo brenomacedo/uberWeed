@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { IAuth } from '../../interfaces'
 import axios from 'axios'
 import '../Login/Login.css'
@@ -7,6 +7,12 @@ import { useHistory } from 'react-router-dom'
 const LoginForm: React.FC = () => {
 
     const history = useHistory()
+
+    useEffect(() => {
+        if(localStorage.getItem('loginToken')) {
+            history.push('/profile')
+        }
+    }, [])
 
     const toRegisterScreen = () => {
         history.push('/register')

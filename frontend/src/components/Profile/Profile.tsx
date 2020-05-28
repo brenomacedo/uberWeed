@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { FaDoorOpen } from 'react-icons/fa'
 import axios from 'axios'
 import { useLocation, useHistory } from 'react-router-dom'
 import './Profile.css'
@@ -47,6 +48,7 @@ const Profile: React.FC<IMapProps> = props => {
                 const userByToken = await axios.post<IUser>('/tokenprovided')
                 setUser({...userByToken.data})
             } catch (error) {
+                localStorage.clear()
                 history.push('/')
             }
 
@@ -56,12 +58,22 @@ const Profile: React.FC<IMapProps> = props => {
         history.push('/')
     }
 
+    const logout = () => {
+        localStorage.clear()
+        history.push('/')
+    }
+
     return (
         <div className="profile-wrapper">
             <div className="top-bar">
-                <div className="weed"></div>
-                <h3>{user.name}</h3>
-                <div className="weed"></div>
+                <div className="profile-info">
+                    <div className="weed"></div>
+                        <h3>{user.name}</h3>
+                    <div className="weed"></div>
+                </div>
+                <h3 className="logout" onClick={logout}>
+                    <strong><FaDoorOpen size={20} color='green' /></strong>Logout
+                </h3>
             </div>
             <div className="widgets-grid">
                 <div className="map">

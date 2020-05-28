@@ -47,6 +47,7 @@ const RegisterForm: React.FC = () => {
                 name, username: email, password, description: details
             })
 
+            localStorage.clear()
             history.push('/')
         } catch(error) {
             validations = ['Email já cadastrado!']
