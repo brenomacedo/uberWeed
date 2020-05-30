@@ -1,10 +1,12 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
+import MapView from 'react-native-maps'
 
 const MakeAsking: React.FC = () => {
     return (
             <View style={styles.map}>
+                <MapView style={styles.mapView} />
                 <View style={styles.searchBar}>
                     <TextInput style={styles.input} />
                     <TouchableOpacity style={styles.search}>
@@ -18,8 +20,7 @@ const MakeAsking: React.FC = () => {
 const styles = StyleSheet.create({
     map: {
         backgroundColor: '#5dcfa3',
-        height: '100%',
-        padding: 10
+        height: '100%'
     },
     input: {
         height: 40,
@@ -41,8 +42,11 @@ const styles = StyleSheet.create({
     searchBar: {
         flexDirection: 'row',
         position: 'absolute',
-        bottom: 10,
-        left: 10
+        bottom: 0,
+        padding: 10
+    },
+    mapView: {
+        flex: 1
     }
 })
 
