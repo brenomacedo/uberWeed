@@ -3,16 +3,16 @@ import { IPosition } from '../../interfaces'
 import Geolocation from '@react-native-community/geolocation'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import MapView from 'react-native-maps'
+import MapView, { Marker } from 'react-native-maps'
 
 const MakeAsking: React.FC = () => {
 
-    const [position, setPosition] = useState<IPosition>({ lat: 0, lng: 0 })
+    const [position, setPosition] = useState<IPosition>({ latitude: 0, longitude: 0 })
 
     useEffect(() => {
         Geolocation.getCurrentPosition((position) => {
-            const { latitude: lat, longitude: lng } = position.coords
-            setPosition({ lat, lng })
+            const { latitude, longitude } = position.coords
+            setPosition({ latitude, longitude })
         }, () => {})
     }, [])
 
@@ -20,7 +20,10 @@ const MakeAsking: React.FC = () => {
 
     return (
             <View style={styles.map}>
-                <MapView style={styles.mapView} />
+                <MapView  region={{...position, latitudeDelta: 0.0922, longitudeDelta: 0.0421}}
+                style={styles.mapView} showsUserLocation >
+                    <Marker coordinate={position} title='eae meno' description='descripition' />
+                </MapView>
                 <View style={styles.searchBar}>
                     <TextInput style={styles.input} />
                     <TouchableOpacity style={styles.search}>
