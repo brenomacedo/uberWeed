@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { IPosition } from '../../interfaces'
+import Geolocation from '@react-native-community/geolocation'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import MapView from 'react-native-maps'
 
 const MakeAsking: React.FC = () => {
+
+    const [position, setPosition] = useState<IPosition>({ lat: 0, lng: 0 })
+
+    useEffect(() => {
+        Geolocation.getCurrentPosition((position) => {
+            const { latitude: lat, longitude: lng } = position.coords
+            setPosition({ lat, lng })
+        }, () => {})
+    }, [])
+
+    console.log(position)
+
     return (
             <View style={styles.map}>
                 <MapView style={styles.mapView} />
