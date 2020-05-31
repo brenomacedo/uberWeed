@@ -1,28 +1,36 @@
 import React, { useEffect, useState } from 'react'
-import { IPosition } from '../../interfaces'
+import { IPosition, IUser } from '../../interfaces'
 import Geolocation from '@react-native-community/geolocation'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import MapView, { Marker } from 'react-native-maps'
+import axios from 'axios'
 
 const MakeAsking: React.FC = () => {
-
+    
     const [position, setPosition] = useState<IPosition>({ latitude: 0, longitude: 0 })
+    const [users, setUsers] = useState<IUser[]>([])
 
     useEffect(() => {
         Geolocation.getCurrentPosition((position) => {
             const { latitude, longitude } = position.coords
             setPosition({ latitude, longitude })
         }, () => {})
+
+        getUsers('')
     }, [])
 
-    console.log(position)
+    const getUsers = async (query: string) => {
+        const Users = await axios.get<IUser[]>(`/user/select?name=${query}`)
+        setUsers([...Users.data])
+    }
+
 
     return (
             <View style={styles.map}>
                 <MapView  region={{...position, latitudeDelta: 0.0922, longitudeDelta: 0.0421}}
                 style={styles.mapView} showsUserLocation >
-                    <Marker coordinate={position} title='eae meno' description='descripition' />
+                    
                 </MapView>
                 <View style={styles.searchBar}>
                     <TextInput style={styles.input} />

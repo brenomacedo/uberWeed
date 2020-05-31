@@ -16,7 +16,9 @@ export default {
                 name: req.body.name,
                 username: req.body.username,
                 password,
-                description: req.body.description
+                description: req.body.description,
+                lat: req.body.lat,
+                lng: req.body.lng
             }
         })
 
@@ -32,7 +34,7 @@ export default {
             where: {
                 name: { [Op.like]: `%${req.query.name}%` }
             },
-            include: ['asking']
+            attributes: ['id', 'name', 'description', 'username', 'lat', 'lng']
         })
 
         return res.json(user)

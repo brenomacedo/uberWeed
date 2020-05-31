@@ -9,7 +9,9 @@ class User extends Model {
     public description!: string
     public username!: string
     public password!: string
-    
+    public lat!: number
+    public lng!: number
+
     public id!: number
     public readonly createdAt?: Date
     public readonly updatedAt?: Date
@@ -20,7 +22,9 @@ User.init({
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     username: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    lat: DataTypes.FLOAT,
+    lng: DataTypes.FLOAT
 }, {
     sequelize,
     tableName: 'User'
