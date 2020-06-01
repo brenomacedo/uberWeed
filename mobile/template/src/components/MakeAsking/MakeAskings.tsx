@@ -10,7 +10,14 @@ const MakeAsking: React.FC = () => {
     
     const [position, setPosition] = useState<IPosition>({ latitude: 0, longitude: 0 })
     const [users, setUsers] = useState<IUser[]>([])
-    const [modal, setModal] = useState<boolean>(true)
+
+    const [searchBox, setSearchBox] = useState<string>('')
+
+    const [modal, setModal] = useState<boolean>(false)
+    const [modalName, setModalName] = useState<string>('')
+    const [modalDescription, setModalDescription] = useState<string>('')
+    const [userId, setUserId] = useState<number>(0)
+    const [description, setDescription] = useState<string>('')
 
     useEffect(() => {
         Geolocation.getCurrentPosition((position) => {
@@ -32,10 +39,10 @@ const MakeAsking: React.FC = () => {
                 latitude: user.lat,
                 longitude: user.lng
             }}>
-                <Callout tooltip={true} style={styles.infoWindow}>
+                <Callout onPress={() => showModal(user.name, user.description, user.id)} tooltip={true} style={styles.infoWindow}>
                     <View >
                         <Text style={styles.infoName}>{user.name}</Text>
-                        <Text style={styles.infoDescription}>{user.description}</Text>
+                        <Text style={styles.infoDescription}>Clique para Ver Mais</Text>
                     </View>
                 </Callout>
             </Marker>
@@ -46,6 +53,28 @@ const MakeAsking: React.FC = () => {
         setModal(false)
     }
 
+    const showModal = (name: string, description: string, id: number) => {
+        setModalName(name)
+        setModalDescription(description)
+        setUserId(id)
+        setModal(true)
+    }
+
+    const makeAsking = () => {
+        axios.post('/asking/create', {
+            lat: position.latitude,
+            lng: position.longitude,
+            userId: userId,
+            description,
+            pending: false,
+            done: false
+        })
+    }
+
+    const search = () => {
+
+    }
+
 
     return (
             <View style={styles.map} >
@@ -54,7 +83,8 @@ const MakeAsking: React.FC = () => {
                     {renderMarkers()}
                 </MapView>
                 <View style={styles.searchBar}>
-                    <TextInput style={styles.input} />
+                    <TextInput value={searchBox} onChangeText={text => setSearchBox(text)}
+                    style={styles.input} />
                     <TouchableOpacity style={styles.search} >
                         <Icon size={15} name='search' color='#fff' />
                     </TouchableOpacity>
@@ -62,8 +92,14 @@ const MakeAsking: React.FC = () => {
                 <Modal onRequestClose={modalClose} animationType='slide' visible={modal} transparent={true}>
                     <View style={styles.modalWrapper}>
                         <View style={styles.modalInfo}>
-                            <Text style={styles.modalName}>HELLO WORLD</Text>
-                            <Text style={styles.modalDescription}>INFO OF MY HELLO WORLD</Text>
+                            <Text style={styles.modalName}>{modalName}</Text>
+                            <Text style={styles.modalDescription}>{modalDescription}</Text>
+                            <TextInput placeholder='Descrição para seu pedido'
+                            style={styles.modalInput} value={description}
+                            onChangeText={text => setDescription(text)} />
+                            <TouchableOpacity onPress={makeAsking} style={styles.modalButton}>
+                                <Text style={styles.modalButtonText}>FAZER PEDIDO</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </Modal>
@@ -143,6 +179,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(0,0,0,0.6)'
+    },
+    modalButton: {
+        padding: 10,
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    modalButtonText: {
+        color: '#69d686',
+        fontWeight: 'bold',
+        fontSize: 18
+    },
+    modalInput: {
+        fontSize: 16,
+        color: 'white',
+        padding: 2,
+        textAlign: 'center'
     }
 })
 
