@@ -71,8 +71,9 @@ const MakeAsking: React.FC = () => {
         })
     }
 
-    const search = () => {
-
+    const search = async () => {
+        const search = await axios.get<IUser[]>(`/user/select?name=${searchBox}`)
+        setUsers([...search.data])
     }
 
 
@@ -85,7 +86,7 @@ const MakeAsking: React.FC = () => {
                 <View style={styles.searchBar}>
                     <TextInput value={searchBox} onChangeText={text => setSearchBox(text)}
                     style={styles.input} />
-                    <TouchableOpacity style={styles.search} >
+                    <TouchableOpacity onPress={search} style={styles.search} >
                         <Icon size={15} name='search' color='#fff' />
                     </TouchableOpacity>
                 </View>
