@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import Asking from '../models/Asking'
+import { io } from '../index'
 
 export default {
     async createAsking (req: Request, res: Response) {
@@ -11,6 +12,8 @@ export default {
             pending: req.body.pending,
             done: req.body.pending
         })
+
+        io.sockets.emit('newAskingToUser', asking)
 
         return res.json(asking)
     },

@@ -16,6 +16,8 @@ io.on('connection', (socket) => {
     })
 })
 
+export {io}
+
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

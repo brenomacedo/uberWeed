@@ -2,6 +2,7 @@ import { GoogleAPI } from 'google-maps-react'
 
 export interface IMapProps {
     google: GoogleAPI
+    socket: any
 }
 
 export interface IProfileState {

@@ -8,12 +8,17 @@ import { IMapProps, IProfileState, IUser, IAsking } from '../../interfaces'
 import Asking from '../Asking/Asking'
 import MarkerIcon from '../../assets/imgs/cannabis2.png'
 import PendingAsking from '../PendingAskings/PendingAskings'
-import io from 'socket.io-client'
-const socket = io.connect('http://localhost:3333')
+
 
 const Profile: React.FC<IMapProps> = props => {
-    socket.on('newAskingToUser', (asking: IAsking) => {
-        console.log(asking)
+
+    const socket = props.socket
+    
+    socket.once('newAskingToUser', (asking: IAsking) => {
+        if(asking.userId === user.id) {
+            
+            setUser({...user, asking: [...user.asking, asking]})
+        }
     })
 
     const history = useHistory()
