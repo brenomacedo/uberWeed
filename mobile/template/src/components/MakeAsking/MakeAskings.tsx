@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { IPosition, IUser } from '../../interfaces'
 import Geolocation from '@react-native-community/geolocation'
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, Modal } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Modal, Alert, Platform } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import MapView, { Marker, MarkerProps, Callout } from 'react-native-maps'
 import axios from 'axios'
 
+
 const MakeAsking: React.FC = () => {
     
+
     const [position, setPosition] = useState<IPosition>({ latitude: 0, longitude: 0 })
     const [users, setUsers] = useState<IUser[]>([])
 
@@ -60,15 +62,26 @@ const MakeAsking: React.FC = () => {
         setModal(true)
     }
 
-    const makeAsking = () => {
-        axios.post('/asking/create', {
+    const makeAsking = async () => {
+
+        const asking = {
             lat: position.latitude,
             lng: position.longitude,
             userId: userId,
             description,
-            pending: false,
+            pending: true,
             done: false
-        })
+        }
+
+        try {
+            await axios.post('/asking/create', asking)
+
+            
+            setModal(false)
+            Alert.alert('Sucesso', 'Sua encomenda foi solicitada, aguarde!')
+        } catch(err) {
+            Alert.alert('Erro', 'Falha ao solicitar a encomenda, verifique sua conexão e o gps.')
+        }
     }
 
     const search = async () => {

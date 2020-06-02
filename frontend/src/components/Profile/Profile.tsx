@@ -4,13 +4,17 @@ import axios from 'axios'
 import { useLocation, useHistory } from 'react-router-dom'
 import './Profile.css'
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react'
-import { IMapProps, IProfileState, IUser } from '../../interfaces'
+import { IMapProps, IProfileState, IUser, IAsking } from '../../interfaces'
 import Asking from '../Asking/Asking'
 import MarkerIcon from '../../assets/imgs/cannabis2.png'
 import PendingAsking from '../PendingAskings/PendingAskings'
-
+import io from 'socket.io-client'
+const socket = io.connect('http://localhost:3333')
 
 const Profile: React.FC<IMapProps> = props => {
+    socket.on('newAskingToUser', (asking: IAsking) => {
+        console.log(asking)
+    })
 
     const history = useHistory()
 
