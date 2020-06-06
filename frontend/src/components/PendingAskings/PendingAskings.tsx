@@ -1,9 +1,9 @@
 import React from 'react'
-import { IAsking, IFunctions } from '../../interfaces'
+import { IAsking, IFunctionsPA } from '../../interfaces'
 import './PendingAskings.css'
 
 
-type Asking = IAsking & IFunctions
+type Asking = IAsking & IFunctionsPA
 
 const PendingAskings: React.FC<Asking> = props =>  {
     return (

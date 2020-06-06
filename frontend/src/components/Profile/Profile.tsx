@@ -3,7 +3,7 @@ import { FaDoorOpen } from 'react-icons/fa'
 import axios from 'axios'
 import { useLocation, useHistory } from 'react-router-dom'
 import './Profile.css'
-import { GoogleApiWrapper, Map, Marker } from 'google-maps-react'
+import { GoogleApiWrapper, Map, Marker, Polyline } from 'google-maps-react'
 import { IMapProps, IProfileState, IUser, IAsking } from '../../interfaces'
 import Asking from '../Asking/Asking'
 import MarkerIcon from '../../assets/imgs/cannabis2.png'
@@ -15,9 +15,8 @@ const Profile: React.FC<IMapProps> = props => {
 
     const socket = props.socket
     
-    socket.once('newAskingToUser', (asking: IAsking) => {
+    socket.on('newAskingToUser', (asking: IAsking) => {
         if(asking.userId === user.id) {
-            
             setUser({...user, asking: [...user.asking, asking]})
         }
     })
@@ -32,8 +31,6 @@ const Profile: React.FC<IMapProps> = props => {
         description: '',
         asking: []
     })
-
-    const [selectedAsking, setSelectedAsking] = useState<IAsking>()
     
     const location = useLocation<IUser>()
 
@@ -83,7 +80,7 @@ const Profile: React.FC<IMapProps> = props => {
 
     const renderAskings = () => {
         const acceptedAskings = user.asking.filter(item => item.pending === false)
-        return acceptedAskings.map((item, index) => <Asking key={index} {...item} />)
+        return acceptedAskings.map((item, index) => <Asking selectAsking={selectAsking} key={index} {...item} />)
     }
 
     const renderPendingAskings = () => {
@@ -115,6 +112,10 @@ const Profile: React.FC<IMapProps> = props => {
                 }}  />
             )
         })
+    }
+
+    const selectAsking = (lat: number, lng: number) => {
+        setMapPosition({ lat, lng })
     }
 
     return (

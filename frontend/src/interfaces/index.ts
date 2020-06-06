@@ -39,7 +39,11 @@ export interface IAuth{
     token: string
 }
 
-export interface IFunctions{
+export interface IFunctionsPA{
     deny(id: number): void
     accept(id: number): void
-} 
+}
+
+export interface IFunctionsA {
+    selectAsking(lat: number, lng: number): void
+}
