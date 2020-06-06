@@ -7,6 +7,7 @@ import { GoogleApiWrapper, Map, Marker } from 'google-maps-react'
 import { IMapProps, IProfileState, IUser, IAsking } from '../../interfaces'
 import Asking from '../Asking/Asking'
 import MarkerIcon from '../../assets/imgs/cannabis2.png'
+import UserIcon from '../../assets/imgs/user.png'
 import PendingAsking from '../PendingAskings/PendingAskings'
 
 
@@ -103,6 +104,19 @@ const Profile: React.FC<IMapProps> = props => {
         refresh()
     }
 
+    const renderAskingMarkers = () => {
+        const acceptedAskings = user.asking.filter(item => item.pending === false)
+        return acceptedAskings.map(asking => {
+            return (
+                <Marker position={{ lat: asking.lat, lng: asking.lng }} icon={{
+                    url: UserIcon,
+                    anchor: new google.maps.Point(25,25),
+                    scaledSize: new google.maps.Size(25,25)
+                }}  />
+            )
+        })
+    }
+
     return (
         <div className="profile-wrapper">
             <div className="top-bar">
@@ -125,9 +139,10 @@ const Profile: React.FC<IMapProps> = props => {
                             <Marker position={mapPosition} 
                             icon={{
                                 url: MarkerIcon,
-                                anchor: new google.maps.Point(16,16),
-                                scaledSize: new google.maps.Size(16,16)
+                                anchor: new google.maps.Point(25,25),
+                                scaledSize: new google.maps.Size(25,25)
                             }} />
+                            {renderAskingMarkers()}
                     </Map>
                 </div>
                 <div className="askings">
