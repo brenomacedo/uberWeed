@@ -12,6 +12,8 @@
     <img src="https://i.imgur.com/cNUSxMI.png">
 </p>
 
+Ícone feito por <a href="https://www.flaticon.com/br/autores/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/br/" title="Flaticon"> www.flaticon.com</a>
+
 <h2 align="center">Descrição do app:</h2>
 <h3 align="center">Bom, não há muito o que dizer sobre ele, é a mesma coisa que o UberEats, só que em vez de comida, é...</h3>
 
