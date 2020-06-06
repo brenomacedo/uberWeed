@@ -40,7 +40,7 @@ const MakeAsking: React.FC = () => {
             <Marker key={user.id} coordinate={{
                 latitude: user.lat,
                 longitude: user.lng
-            }}>
+            }} >
                 <Callout onPress={() => showModal(user.name, user.description, user.id)} tooltip={true} style={styles.infoWindow}>
                     <View >
                         <Text style={styles.infoName}>{user.name}</Text>
