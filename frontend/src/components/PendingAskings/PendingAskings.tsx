@@ -1,14 +1,17 @@
 import React from 'react'
-import { IAsking } from '../../interfaces'
+import { IAsking, IFunctions } from '../../interfaces'
 import './PendingAskings.css'
 
-const PendingAskings: React.FC<IAsking> = props =>  {
+
+type Asking = IAsking & IFunctions
+
+const PendingAskings: React.FC<Asking> = props =>  {
     return (
         <div className="pending-askings-wrapper">
             <div>Novo pedido!</div>
             <h3>{props.description}</h3>
-            <button className="accept">Aceitar</button>
-            <button className="deny">Recusar</button>
+            <button onClick={() => props.accept(props.id)} className="accept">Aceitar</button>
+            <button onClick={() => props.deny(props.id)} className="deny">Recusar</button>
         </div>
     )
 }

@@ -31,6 +31,8 @@ const Profile: React.FC<IMapProps> = props => {
         description: '',
         asking: []
     })
+
+    const [selectedAsking, setSelectedAsking] = useState<IAsking>()
     
     const location = useLocation<IUser>()
 
@@ -68,6 +70,11 @@ const Profile: React.FC<IMapProps> = props => {
         history.push('/')
     }
 
+    const refresh = async () => {
+        const newAskings = await axios.get<IAsking[]>(`/asking/select/${user.id}`)
+        setUser({...user, asking: [...newAskings.data]})
+    }
+
     const logout = () => {
         localStorage.clear()
         history.push('/')
@@ -80,7 +87,20 @@ const Profile: React.FC<IMapProps> = props => {
 
     const renderPendingAskings = () => {
         const pendingAskings = user.asking.filter(item => item.pending === true)
-        return pendingAskings.map((item, index) => <PendingAsking key={index} {...item} />)
+        return pendingAskings.map((item, index) => <PendingAsking accept={accept} deny={deny} key={index} {...item} />)
+    }
+
+    const deny = async (id: number) => {
+        await axios.delete(`/asking/delete/${id}`)
+        refresh()
+    }
+
+    const accept = async (id: number) => {
+        await axios.put(`/asking/update/${id}`, {
+            pending: false,
+            done: false
+        })
+        refresh()
     }
 
     return (

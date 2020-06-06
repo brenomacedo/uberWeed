@@ -19,7 +19,11 @@ export default {
     },
     
     async selectAsking (req: Request, res: Response) {
-        const asking = await Asking.findAll()
+        const asking = await Asking.findAll({
+            where: {
+                userId: req.params.id
+            }
+        })
 
         return res.json(asking)
     },
@@ -38,6 +42,7 @@ export default {
     },
 
     async deleteAsking (req: Request, res: Response) {
+
         await Asking.destroy({
             where: {
                 id: req.params.id

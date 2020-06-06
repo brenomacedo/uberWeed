@@ -1,6 +1,8 @@
 import React from 'react'
-import { IAsking } from '../../interfaces'
+import { IAsking, IFunctions } from '../../interfaces'
 import './Asking.css'
+
+type Asking = IAsking
 
 const Askings: React.FC<IAsking> = props => {
     return (

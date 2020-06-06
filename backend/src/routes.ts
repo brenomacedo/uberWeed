@@ -14,10 +14,10 @@ routes.post('/user/create', userController.create)
 routes.get('/user/select', userController.select)
 
 //ASKING
-routes.get('/asking/select', askingController.selectAsking)
+routes.get('/asking/select/:id', askingController.selectAsking)
 routes.post('/asking/create', askingController.createAsking)
-routes.put('/asking/update', askingController.updateAsking)
-routes.delete('/asking/delete', askingController.deleteAsking)
+routes.put('/asking/update/:id', askingController.updateAsking)
+routes.delete('/asking/delete/:id', askingController.deleteAsking)
 
 routes.post('/', (req, res) => {
     return res.send('hello world')

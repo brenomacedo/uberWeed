@@ -38,3 +38,8 @@ export interface IAuth{
     user: IUser
     token: string
 }
+
+export interface IFunctions{
+    deny(id: number): void
+    accept(id: number): void
+} 
