@@ -8,7 +8,10 @@ const SplashScreen = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            navigation.navigate('home')
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'home' }]
+            })
         }, 2000)
     }, [])
 
